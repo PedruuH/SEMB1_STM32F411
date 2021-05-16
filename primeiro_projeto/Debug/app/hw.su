@@ -1,0 +1,2 @@
+hw.c:10:6:hw_time_delay_ms	16	static
+hw.c:15:6:hw_led_toggle	16	static

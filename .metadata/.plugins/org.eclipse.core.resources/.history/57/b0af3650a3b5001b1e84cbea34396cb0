@@ -1,0 +1,51 @@
+/*
+ * hw.c
+ *
+ *  Created on: Apr 30, 2021
+ *      Author: pedro
+ */
+#include <stdint.h>
+#include <stdbool.h>
+#include "main.h"
+#include "app.h"
+extern TIM_HandleTypeDef htim1;
+extern TIM_HandleTypeDef htim2;
+
+uint16_t led_time = 250;
+
+void hw_sleep(void)
+{
+	__WFI();
+}
+
+void hw_led_toggle(void)
+{
+	HAL_GPIO_TogglePin(USER_LED_GPIO_Port, USER_LED_Pin);
+}
+
+void hw_timer_start(hw_tim_t tim_index)
+{
+	TIM_HandleTypeDef *tims[] = { &htim1, &htim2 };
+	HAL_TIM_Base_Start_IT(tims[tim_index]);
+}
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+  if(htim == &htim1)
+  {
+	  hw_led_toggle();
+  }
+}
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+
+}
+
+void hw_set_time_led(uint16_t led_time)
+{
+
+}
+
+
+//HAL_NVIC_EnableIRQ(EXTI0_IRQn);
