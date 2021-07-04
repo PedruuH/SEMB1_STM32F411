@@ -12,7 +12,7 @@ typedef enum hw_tim_e
     HW_TIM1 = 0,
     HW_TIM2 = 1,
 } hw_tim_t;
-void hw_timer_start(hw_tim_t tim_index);
+void hw_timer_start(void);
 
 void hw_sleep(void);
 void hw_led_toggle(void);
